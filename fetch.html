@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Hello Ji</h1>
+
+    <script>
+        const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
+
+        async function showWeather() {
+            let city = "goa";
+
+            //hmne await lgaya hai mtlb jb tk pura ftech nhi hoga tb tk aage nhi bdega.
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+
+        
+            //json m convert kr diya
+            const data = await response.json();
+            console.log("Weather data: ", data);
+
+            //UI m dikhane k liye paragraph bnakr usme dal diya.
+            let newPara = document.createElement('p');
+            //json jb convert kra to main m tha temprature to use ese acess kra. 
+            newPara.textContent = `${data?.main?.temp.toFixed(2)} Celsius`;
+
+            //UI m dikha diya.
+            document.body.appendChild(newPara);
+        }
+
+        // Call the function to show weather --> we can call it on console.
+
+        showWeather();
+    </script>
+</body>
+</html>
